@@ -3,880 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SideKick LB — Light Blue Integration for GoHighLevel</title>
-    <meta name="description" content="Sync Light Blue studio management with GoHighLevel CRM. Two-way contact sync, booking updates, invoice tracking, and workflow automation for photographers.">
-    <meta name="keywords" content="Light Blue, GoHighLevel integration, photographer CRM, studio management, contact sync, booking automation, photography business software">
+    <title>SideKick LB — Coming Soon | Light Blue Integration for GoHighLevel</title>
+    <meta name="description" content="Light Blue studio management integration for GoHighLevel. Coming soon.">
     <meta name="author" content="Zoom Photography">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://lb.ghl-sidekick.com/">
     <link rel="icon" type="image/png" href="images/favicon.png">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lb.ghl-sidekick.com/">
-    <meta property="og:title" content="SideKick LB — Light Blue Integration for GoHighLevel">
-    <meta property="og:description" content="Sync Light Blue studio management with GoHighLevel CRM. Two-way contact sync, booking updates, and workflow automation.">
-    
-    <!-- JSON-LD Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "SideKick LB",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Windows 10, Windows 11",
-        "description": "Sync Light Blue studio management with GoHighLevel CRM for photographers.",
-        "url": "https://lb.ghl-sidekick.com/",
-        "author": {
-            "@type": "Organization",
-            "name": "Zoom Photography"
-        },
-        "offers": [{
-            "@type": "Offer",
-            "name": "LB Standalone",
-            "price": "14.99",
-            "priceCurrency": "USD",
-            "priceSpecification": {
-                "@type": "UnitPriceSpecification",
-                "billingDuration": "P1M"
-            }
-        },{
-            "@type": "Offer",
-            "name": "LB + GHL",
-            "price": "24.99",
-            "priceCurrency": "USD",
-            "priceSpecification": {
-                "@type": "UnitPriceSpecification",
-                "billingDuration": "P1M"
-            }
-        }]
-    }
-    </script>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-        :root {
-            --primary: #3B82F6;
-            --primary-dark: #2563EB;
-            --secondary: #10B981;
-            --accent: #8B5CF6;
-            --dark: #1F2937;
-            --light: #F9FAFB;
-        }
-        
-        * { scroll-behavior: smooth; }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: var(--light);
-            color: var(--dark);
-        }
-        
-        /* Navigation */
-        .navbar {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 15px 0;
-        }
-        
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: var(--primary) !important;
-        }
-        
-        .navbar-brand img { height: 40px; margin-right: 10px; }
-        
-        .nav-link {
-            font-weight: 500;
-            color: var(--dark) !important;
-            margin: 0 10px;
-        }
-        
-        .nav-link:hover { color: var(--primary) !important; }
-        
-        .btn-nav {
-            background: var(--primary);
-            color: white !important;
-            padding: 10px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-        }
-        
-        .btn-nav:hover { background: var(--primary-dark); }
-        
-        /* Hero */
-        .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
             color: white;
-            padding: 120px 0 100px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        
-        .hero .tagline {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            max-width: 650px;
-            margin: 0 auto 2rem;
-        }
-        
-        .hero-logo { width: 120px; height: auto; margin-bottom: 20px; }
-        
-        .hero-buttons {
+            min-height: 100vh;
             display: flex;
-            gap: 15px;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
+            text-align: center;
+            padding: 20px;
         }
-        
-        .btn-hero-primary {
-            background: white;
-            color: var(--primary);
-            padding: 14px 32px;
-            border-radius: 8px;
+        .logo { width: 100px; height: auto; margin-bottom: 30px; }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .accent { color: #3B82F6; }
+        .tagline { font-size: 1.2rem; color: #9CA3AF; margin-bottom: 40px; max-width: 500px; }
+        .badge {
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1rem;
             font-weight: 600;
-            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
-        
-        .btn-hero-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            color: var(--primary-dark);
-        }
-        
-        .btn-hero-secondary {
-            background: transparent;
-            color: white;
-            padding: 14px 32px;
-            border: 2px solid rgba(255,255,255,0.5);
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
-        
-        .btn-hero-secondary:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: white;
-            color: white;
-        }
-        
-        /* Integration Bar */
-        .integration-bar {
-            background: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-        
-        .integration-bar h6 {
-            color: #6B7280;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.85rem;
-            margin-bottom: 25px;
-        }
-        
-        .integration-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 60px;
-            flex-wrap: wrap;
-        }
-        
-        .integration-logos span {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #374151;
-        }
-        
-        /* Features */
-        .features { padding: 100px 0; }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: #6B7280;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .feature-card {
-            background: white;
-            border-radius: 16px;
-            padding: 35px;
-            height: 100%;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-        }
-        
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .feature-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        
-        .feature-card p {
-            color: #6B7280;
-            margin: 0;
-            line-height: 1.6;
-        }
-        
-        /* How It Works */
-        .how-it-works {
-            background: var(--dark);
-            color: white;
-            padding: 100px 0;
-        }
-        
-        .how-it-works .section-title h2 { color: white; }
-        .how-it-works .section-title p { color: rgba(255,255,255,0.7); }
-        
-        .step-card { text-align: center; padding: 30px; }
-        
-        .step-number {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin: 0 auto 20px;
-        }
-        
-        .step-card h4 { font-size: 1.2rem; margin-bottom: 10px; }
-        .step-card p { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
-        
-        /* Pricing */
-        .pricing {
-            padding: 100px 0;
-            background: linear-gradient(180deg, var(--light) 0%, white 100%);
-        }
-        
-        .price-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px 35px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            text-align: center;
-            height: 100%;
-            border: 2px solid transparent;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-        
-        .price-card:hover { border-color: var(--primary); transform: translateY(-5px); }
-        
-        .price-card.featured {
-            border-color: var(--primary);
-            position: relative;
-        }
-        
-        .price-card.featured::before {
-            content: 'MOST POPULAR';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary);
-            color: white;
-            padding: 5px 20px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-        
-        .price-toggle {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
+            gap: 10px;
             margin-bottom: 50px;
         }
-        
-        .price-toggle span { font-weight: 500; color: #6B7280; }
-        .price-toggle span.active { color: var(--primary); font-weight: 600; }
-        
-        .toggle-switch {
-            width: 60px;
-            height: 30px;
-            background: #E5E7EB;
-            border-radius: 15px;
-            position: relative;
-            cursor: pointer;
-            transition: background 0.3s;
+        .features {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 50px;
         }
-        
-        .toggle-switch.active { background: var(--primary); }
-        
-        .toggle-switch::after {
-            content: '';
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            background: white;
-            border-radius: 50%;
-            top: 3px;
-            left: 3px;
-            transition: left 0.3s;
-        }
-        
-        .toggle-switch.active::after { left: 33px; }
-        
-        .save-badge {
-            background: var(--secondary);
-            color: white;
-            padding: 3px 10px;
-            border-radius: 10px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        
-        .price-badge {
-            background: var(--secondary);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-        
-        .price-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
-        
-        .price-amount {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .price-amount span { font-size: 1.2rem; color: #6B7280; font-weight: 400; }
-        .price-period { color: #6B7280; margin-bottom: 30px; }
-        
-        .price-features {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 30px;
-            text-align: left;
-        }
-        
-        .price-features li {
-            padding: 12px 0;
-            border-bottom: 1px solid #F3F4F6;
+        .feature {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            color: #D1D5DB;
         }
-        
-        .price-features li i { color: var(--secondary); font-size: 1.1rem; }
-        
-        .btn-buy {
-            background: var(--primary);
-            color: white;
-            padding: 16px 40px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-decoration: none;
-            display: inline-block;
-            width: 100%;
-            transition: all 0.2s;
-        }
-        
-        .btn-buy:hover {
-            background: var(--primary-dark);
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        .trial-note { margin-top: 15px; color: #6B7280; font-size: 0.9rem; }
-        
-        /* FAQ */
-        .faq { padding: 100px 0; }
-        
-        .accordion-item {
-            border: none;
-            margin-bottom: 15px;
-            border-radius: 12px !important;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .accordion-button {
-            font-weight: 600;
-            font-size: 1.05rem;
-            padding: 20px 25px;
-            background: white;
-        }
-        
-        .accordion-button:not(.collapsed) {
-            background: white;
-            color: var(--primary);
-            box-shadow: none;
-        }
-        
-        .accordion-button:focus { box-shadow: none; }
-        
-        .accordion-body {
-            padding: 0 25px 20px;
-            color: #6B7280;
-            line-height: 1.7;
-        }
-        
-        /* CTA */
-        .cta-section {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .cta-section h2 { font-size: 2.5rem; margin-bottom: 15px; }
-        .cta-section p { opacity: 0.9; margin-bottom: 30px; font-size: 1.1rem; }
-        
-        /* Footer */
-        footer {
-            background: #111827;
-            color: #9CA3AF;
-            padding: 60px 0 30px;
-        }
-        
-        .footer-brand {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 15px;
-        }
-        
-        .footer-links h6 { color: white; font-weight: 600; margin-bottom: 20px; }
-        
-        .footer-links a {
+        .feature i { color: #3B82F6; font-size: 1.2rem; }
+        .back-link {
             color: #9CA3AF;
             text-decoration: none;
-            display: block;
-            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             transition: color 0.2s;
         }
-        
-        .footer-links a:hover { color: white; }
-        
-        .footer-bottom {
-            border-top: 1px solid #374151;
+        .back-link:hover { color: white; }
+        .notify {
             margin-top: 40px;
-            padding-top: 25px;
-            text-align: center;
-            font-size: 0.9rem;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            max-width: 400px;
         }
-        
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.3rem; }
-            .hero .tagline { font-size: 1.1rem; }
-            .navbar { padding-top: 80px; }
+        .notify p { color: #9CA3AF; font-size: 0.9rem; margin-bottom: 15px; }
+        .notify a {
+            color: #3B82F6;
+            text-decoration: none;
+            font-weight: 600;
         }
+        .notify a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="images/logo.png" alt="SideKick LB">
-                SideKick LB
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#how-it-works">How It Works</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
-                    <li class="nav-item ms-2">
-                        <a class="btn btn-nav" href="#pricing">Get Started</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="container">
-            <img src="images/logo.png" alt="SideKick LB" class="hero-logo">
-            <h1>Light Blue + GoHighLevel<br>Finally Connected</h1>
-            <p class="tagline">Automatically sync contacts, track bookings, and trigger workflows between Light Blue studio management and GoHighLevel CRM</p>
-            <div class="hero-buttons">
-                <a href="#pricing" class="btn-hero-primary">
-                    <i class="bi bi-download"></i> Download Free Trial
-                </a>
-                <a href="#features" class="btn-hero-secondary">
-                    <i class="bi bi-play-circle"></i> See Features
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Integration Bar -->
-    <section class="integration-bar">
-        <div class="container">
-            <h6>Seamlessly Connects</h6>
-            <div class="integration-logos">
-                <span><i class="bi bi-journal-bookmark-fill me-2"></i>Light Blue</span>
-                <i class="bi bi-arrow-left-right" style="font-size: 2rem; color: #9CA3AF;"></i>
-                <span><i class="bi bi-lightning-fill me-2"></i>GoHighLevel</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features -->
-    <section class="features" id="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Everything You Need to Bridge Light Blue & GHL</h2>
-                <p>Stop manually copying data between systems. SideKick LB handles synchronization automatically.</p>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="bi bi-people-fill"></i></div>
-                        <h3>Two-Way Contact Sync</h3>
-                        <p>Contacts created or updated in Light Blue automatically sync to GoHighLevel, and vice versa. Never duplicate data entry again.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="bi bi-calendar-check-fill"></i></div>
-                        <h3>Booking Updates</h3>
-                        <p>When sessions are booked in Light Blue, GHL contacts are automatically updated with shoot dates, times, and status.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="bi bi-receipt"></i></div>
-                        <h3>Invoice Tracking</h3>
-                        <p>Push invoice totals, payment status, and balance due from Light Blue to custom fields in GoHighLevel.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="bi bi-lightning-fill"></i></div>
-                        <h3>Workflow Triggers</h3>
-                        <p>Trigger GHL automations when Light Blue events happen—new booking, payment received, session completed.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="bi bi-sliders"></i></div>
-                        <h3>Custom Field Mapping</h3>
-                        <p>Map any Light Blue field to any GHL custom field. Full control over what data goes where.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon"><i class="bi bi-cloud-upload-fill"></i></div>
-                        <h3>Media Upload</h3>
-                        <p>Automatically upload session images from Light Blue to GHL contact records for portfolio access.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <div class="section-title">
-                <h2>Up and Running in Minutes</h2>
-                <p>Simple setup, powerful results</p>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="step-card">
-                        <div class="step-number">1</div>
-                        <h4>Install SideKick LB</h4>
-                        <p>Download and run the installer on your Windows PC</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="step-card">
-                        <div class="step-number">2</div>
-                        <h4>Connect GHL</h4>
-                        <p>Sign in with your GoHighLevel account credentials</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="step-card">
-                        <div class="step-number">3</div>
-                        <h4>Configure Mapping</h4>
-                        <p>Choose which Light Blue fields sync to which GHL fields</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="step-card">
-                        <div class="step-number">4</div>
-                        <h4>Start Syncing</h4>
-                        <p>Your data flows automatically between both platforms</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-title">
-                <h2>Simple, Transparent Pricing</h2>
-                <p>Choose monthly flexibility or save with annual billing</p>
-            </div>
-            
-            <!-- Billing Toggle -->
-            <div class="price-toggle">
-                <span class="active" id="monthlyLabel">Monthly</span>
-                <div class="toggle-switch" id="billingToggle" onclick="toggleBilling()"></div>
-                <span id="annualLabel">Annual <span class="save-badge">Save 17%</span></span>
-            </div>
-            
-            <div class="row g-4 justify-content-center">
-                <!-- Standalone Plan -->
-                <div class="col-lg-5 col-md-6">
-                    <div class="price-card">
-                        <span class="price-badge" style="background: #6B7280;">STANDALONE</span>
-                        <h3>LB Solo</h3>
-                        <div class="price-amount">
-                            <span class="monthly-price">$14.99</span>
-                            <span class="annual-price" style="display:none;">$149</span>
-                            <span class="monthly-period">/mo</span>
-                            <span class="annual-period" style="display:none;">/yr</span>
-                        </div>
-                        <p class="price-period">All features • No GHL required</p>
-                        <ul class="price-features">
-                            <li><i class="bi bi-check-circle-fill"></i> Light Blue monitoring</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Booking & session tracking</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Invoice tracking</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Custom notifications</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Reporting & analytics</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Email support</li>
-                            <li style="color: #9CA3AF;"><i class="bi bi-x-circle" style="color: #D1D5DB;"></i> GHL contact sync</li>
-                            <li style="color: #9CA3AF;"><i class="bi bi-x-circle" style="color: #D1D5DB;"></i> GHL workflow triggers</li>
-                        </ul>
-                        <a href="https://zoomphoto.lemonsqueezy.com/buy/sidekick-lb-solo" class="btn-buy" style="background: #6B7280;">
-                            Start Free Trial
-                        </a>
-                        <p class="trial-note"><i class="bi bi-info-circle me-1"></i> 14-day free trial • No credit card</p>
-                    </div>
-                </div>
-                
-                <!-- GHL Plan -->
-                <div class="col-lg-5 col-md-6">
-                    <div class="price-card featured">
-                        <span class="price-badge">WITH GHL INTEGRATION</span>
-                        <h3>LB + GHL</h3>
-                        <div class="price-amount">
-                            <span class="monthly-price">$24.99</span>
-                            <span class="annual-price" style="display:none;">$249</span>
-                            <span class="monthly-period">/mo</span>
-                            <span class="annual-period" style="display:none;">/yr</span>
-                        </div>
-                        <p class="price-period">Everything in Solo + Full GHL sync</p>
-                        <ul class="price-features">
-                            <li><i class="bi bi-check-circle-fill"></i> Light Blue monitoring</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Booking & session tracking</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Invoice tracking</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Custom notifications</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Reporting & analytics</li>
-                            <li><i class="bi bi-check-circle-fill"></i> Priority support</li>
-                            <li><i class="bi bi-check-circle-fill" style="color: var(--primary);"></i> <strong>Two-way GHL contact sync</strong></li>
-                            <li><i class="bi bi-check-circle-fill" style="color: var(--primary);"></i> <strong>GHL workflow triggers</strong></li>
-                        </ul>
-                        <a href="https://zoomphoto.lemonsqueezy.com/buy/sidekick-lb-ghl" class="btn-buy">
-                            Start Free Trial
-                        </a>
-                        <p class="trial-note"><i class="bi bi-info-circle me-1"></i> 14-day free trial • No credit card</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-5">
-                <p style="color: #6B7280;"><i class="bi bi-gift me-2"></i>Have a discount code? Apply it at checkout for up to 30% off!</p>
-            </div>
-        </div>
-    </section>
+    <img src="https://ghl-sidekick.com/logo.png" alt="SideKick" class="logo">
+    <h1>SideKick <span class="accent">LB</span></h1>
+    <p class="tagline">Light Blue studio management integration for GoHighLevel — sync contacts, bookings & invoices automatically</p>
     
-    <script>
-    function toggleBilling() {
-        const toggle = document.getElementById('billingToggle');
-        const monthlyLabel = document.getElementById('monthlyLabel');
-        const annualLabel = document.getElementById('annualLabel');
-        const monthlyPrices = document.querySelectorAll('.monthly-price, .monthly-period');
-        const annualPrices = document.querySelectorAll('.annual-price, .annual-period');
-        
-        toggle.classList.toggle('active');
-        const isAnnual = toggle.classList.contains('active');
-        
-        monthlyLabel.classList.toggle('active', !isAnnual);
-        annualLabel.classList.toggle('active', isAnnual);
-        
-        monthlyPrices.forEach(el => el.style.display = isAnnual ? 'none' : 'inline');
-        annualPrices.forEach(el => el.style.display = isAnnual ? 'inline' : 'none');
-    }
-    </script>
-
-    <!-- FAQ -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <div class="section-title">
-                <h2>Frequently Asked Questions</h2>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="accordion" id="faqAccordion">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                    Does SideKick LB work with Light Blue cloud or desktop?
-                                </button>
-                            </h2>
-                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    SideKick LB works with Light Blue's API, which means it connects to your Light Blue account regardless of whether you use the desktop app, mobile app, or web version. Your data syncs through Light Blue's cloud.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                    What happens if I already have contacts in both systems?
-                                </button>
-                            </h2>
-                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    SideKick LB uses email address matching to identify existing contacts. When syncing, if a contact exists in both Light Blue and GHL with the same email, data is merged rather than duplicated.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                    Is my data secure?
-                                </button>
-                            </h2>
-                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    Yes. SideKick LB runs locally on your computer and connects directly to Light Blue and GoHighLevel APIs over encrypted HTTPS connections. Your credentials are stored securely on your machine.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-                                    What's included in the free trial?
-                                </button>
-                            </h2>
-                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    The 14-day free trial includes full access to all features with no limitations. After 14 days, you'll need to purchase a license to continue using SideKick LB. No credit card required.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Ready to Connect Light Blue & GHL?</h2>
-            <p>Join photographers who have streamlined their workflow with SideKick LB</p>
-            <a href="#pricing" class="btn-hero-primary">
-                <i class="bi bi-download"></i> Start Free Trial
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="footer-brand">SideKick LB</div>
-                    <p>Light Blue integration for GoHighLevel. Part of the GHL SideKick family of photographer tools.</p>
-                </div>
-                <div class="col-md-2 mb-4 footer-links">
-                    <h6>Product</h6>
-                    <a href="#features">Features</a>
-                    <a href="#pricing">Pricing</a>
-                    <a href="#faq">FAQ</a>
-                </div>
-                <div class="col-md-2 mb-4 footer-links">
-                    <h6>SideKick Family</h6>
-                    <a href="https://ghl-sidekick.com">GHL SideKick</a>
-                    <a href="https://ps.ghl-sidekick.com">SideKick PS</a>
-                    <a href="https://dd.ghl-sidekick.com">SideKick DD</a>
-                </div>
-                <div class="col-md-4 mb-4 footer-links">
-                    <h6>Support</h6>
-                    <a href="mailto:guy@zoom-photo.co.uk"><i class="bi bi-envelope me-2"></i>guy@zoom-photo.co.uk</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 GHL SideKick. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="badge">
+        <i class="bi bi-clock-history"></i>
+        Coming Soon
+    </div>
+    
+    <div class="features">
+        <div class="feature"><i class="bi bi-check-circle-fill"></i> Two-way contact sync</div>
+        <div class="feature"><i class="bi bi-check-circle-fill"></i> Booking & session tracking</div>
+        <div class="feature"><i class="bi bi-check-circle-fill"></i> Invoice monitoring</div>
+        <div class="feature"><i class="bi bi-check-circle-fill"></i> Custom notifications</div>
+    </div>
+    
+    <a href="https://ghl-sidekick.com" class="back-link">
+        <i class="bi bi-arrow-left"></i> Back to GHL SideKick
+    </a>
+    
+    <div class="notify">
+        <p>Want to be notified when SideKick LB launches?</p>
+        <a href="mailto:guy@zoom-photo.co.uk?subject=Notify me when SideKick LB launches">
+            <i class="bi bi-envelope me-1"></i> Email us to get notified
+        </a>
+    </div>
 </body>
 </html>
