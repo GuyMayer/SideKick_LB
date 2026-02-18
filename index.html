@@ -31,11 +31,25 @@
             "@type": "Organization",
             "name": "Zoom Photography"
         },
-        "offers": {
+        "offers": [{
             "@type": "Offer",
+            "name": "LB Standalone",
+            "price": "14.99",
+            "priceCurrency": "USD",
+            "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "billingDuration": "P1M"
+            }
+        },{
+            "@type": "Offer",
+            "name": "LB + GHL",
             "price": "24.99",
-            "priceCurrency": "USD"
-        }
+            "priceCurrency": "USD",
+            "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "billingDuration": "P1M"
+            }
+        }]
     }
     </script>
     
@@ -291,16 +305,80 @@
         .price-card {
             background: white;
             border-radius: 20px;
-            padding: 45px 40px;
+            padding: 40px 35px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             text-align: center;
-            max-width: 420px;
-            margin: 0 auto;
+            height: 100%;
             border: 2px solid transparent;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, transform 0.3s;
         }
         
-        .price-card:hover { border-color: var(--primary); }
+        .price-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        
+        .price-card.featured {
+            border-color: var(--primary);
+            position: relative;
+        }
+        
+        .price-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        
+        .price-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        
+        .price-toggle span { font-weight: 500; color: #6B7280; }
+        .price-toggle span.active { color: var(--primary); font-weight: 600; }
+        
+        .toggle-switch {
+            width: 60px;
+            height: 30px;
+            background: #E5E7EB;
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .toggle-switch.active { background: var(--primary); }
+        
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: left 0.3s;
+        }
+        
+        .toggle-switch.active::after { left: 33px; }
+        
+        .save-badge {
+            background: var(--secondary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
         
         .price-badge {
             background: var(--secondary);
@@ -599,30 +677,100 @@
         <div class="container">
             <div class="section-title">
                 <h2>Simple, Transparent Pricing</h2>
-                <p>One license, unlimited sync. No monthly fees.</p>
+                <p>Choose monthly flexibility or save with annual billing</p>
             </div>
-            <div class="price-card">
-                <span class="price-badge">LIFETIME LICENSE</span>
-                <h3>SideKick LB Pro</h3>
-                <div class="price-amount">$24.99 <span>USD</span></div>
-                <p class="price-period">One-time payment • Free updates forever</p>
-                <ul class="price-features">
-                    <li><i class="bi bi-check-circle-fill"></i> Two-way contact sync</li>
-                    <li><i class="bi bi-check-circle-fill"></i> Booking & session updates</li>
-                    <li><i class="bi bi-check-circle-fill"></i> Invoice tracking</li>
-                    <li><i class="bi bi-check-circle-fill"></i> Workflow triggers</li>
-                    <li><i class="bi bi-check-circle-fill"></i> Custom field mapping</li>
-                    <li><i class="bi bi-check-circle-fill"></i> Media upload</li>
-                    <li><i class="bi bi-check-circle-fill"></i> Email support</li>
-                    <li><i class="bi bi-check-circle-fill"></i> Free lifetime updates</li>
-                </ul>
-                <a href="https://zoomphoto.lemonsqueezy.com/buy/sidekick-lb" class="btn-buy">
-                    <i class="bi bi-cart-fill me-2"></i>Buy Now
-                </a>
-                <p class="trial-note"><i class="bi bi-info-circle me-1"></i> 14-day free trial included</p>
+            
+            <!-- Billing Toggle -->
+            <div class="price-toggle">
+                <span class="active" id="monthlyLabel">Monthly</span>
+                <div class="toggle-switch" id="billingToggle" onclick="toggleBilling()"></div>
+                <span id="annualLabel">Annual <span class="save-badge">Save 17%</span></span>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <!-- Standalone Plan -->
+                <div class="col-lg-5 col-md-6">
+                    <div class="price-card">
+                        <span class="price-badge" style="background: #6B7280;">STANDALONE</span>
+                        <h3>LB Solo</h3>
+                        <div class="price-amount">
+                            <span class="monthly-price">$14.99</span>
+                            <span class="annual-price" style="display:none;">$149</span>
+                            <span class="monthly-period">/mo</span>
+                            <span class="annual-period" style="display:none;">/yr</span>
+                        </div>
+                        <p class="price-period">All features • No GHL required</p>
+                        <ul class="price-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Light Blue monitoring</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Booking & session tracking</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Invoice tracking</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Custom notifications</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Reporting & analytics</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Email support</li>
+                            <li style="color: #9CA3AF;"><i class="bi bi-x-circle" style="color: #D1D5DB;"></i> GHL contact sync</li>
+                            <li style="color: #9CA3AF;"><i class="bi bi-x-circle" style="color: #D1D5DB;"></i> GHL workflow triggers</li>
+                        </ul>
+                        <a href="https://zoomphoto.lemonsqueezy.com/buy/sidekick-lb-solo" class="btn-buy" style="background: #6B7280;">
+                            Start Free Trial
+                        </a>
+                        <p class="trial-note"><i class="bi bi-info-circle me-1"></i> 14-day free trial • No credit card</p>
+                    </div>
+                </div>
+                
+                <!-- GHL Plan -->
+                <div class="col-lg-5 col-md-6">
+                    <div class="price-card featured">
+                        <span class="price-badge">WITH GHL INTEGRATION</span>
+                        <h3>LB + GHL</h3>
+                        <div class="price-amount">
+                            <span class="monthly-price">$24.99</span>
+                            <span class="annual-price" style="display:none;">$249</span>
+                            <span class="monthly-period">/mo</span>
+                            <span class="annual-period" style="display:none;">/yr</span>
+                        </div>
+                        <p class="price-period">Everything in Solo + Full GHL sync</p>
+                        <ul class="price-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Light Blue monitoring</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Booking & session tracking</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Invoice tracking</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Custom notifications</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Reporting & analytics</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Priority support</li>
+                            <li><i class="bi bi-check-circle-fill" style="color: var(--primary);"></i> <strong>Two-way GHL contact sync</strong></li>
+                            <li><i class="bi bi-check-circle-fill" style="color: var(--primary);"></i> <strong>GHL workflow triggers</strong></li>
+                        </ul>
+                        <a href="https://zoomphoto.lemonsqueezy.com/buy/sidekick-lb-ghl" class="btn-buy">
+                            Start Free Trial
+                        </a>
+                        <p class="trial-note"><i class="bi bi-info-circle me-1"></i> 14-day free trial • No credit card</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <p style="color: #6B7280;"><i class="bi bi-gift me-2"></i>Have a discount code? Apply it at checkout for up to 30% off!</p>
             </div>
         </div>
     </section>
+    
+    <script>
+    function toggleBilling() {
+        const toggle = document.getElementById('billingToggle');
+        const monthlyLabel = document.getElementById('monthlyLabel');
+        const annualLabel = document.getElementById('annualLabel');
+        const monthlyPrices = document.querySelectorAll('.monthly-price, .monthly-period');
+        const annualPrices = document.querySelectorAll('.annual-price, .annual-period');
+        
+        toggle.classList.toggle('active');
+        const isAnnual = toggle.classList.contains('active');
+        
+        monthlyLabel.classList.toggle('active', !isAnnual);
+        annualLabel.classList.toggle('active', isAnnual);
+        
+        monthlyPrices.forEach(el => el.style.display = isAnnual ? 'none' : 'inline');
+        annualPrices.forEach(el => el.style.display = isAnnual ? 'inline' : 'none');
+    }
+    </script>
 
     <!-- FAQ -->
     <section class="faq" id="faq">
